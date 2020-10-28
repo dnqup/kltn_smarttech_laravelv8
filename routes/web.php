@@ -38,6 +38,7 @@ Route::get('/addCart/{id}', [PageController::class, 'addCart'])->name('addCart')
 Route::get('deleteCart/{id}', [PageController::class, 'deleteCart'])->name('deleteCart');
 Route::get('destroyCart', [PageController::class, 'destroyCart'])->name('destroyCart');
 Route::get('updateCart/{rowId}', [PageController::class, 'updateCart'])->name('updateCart');
+Route::get('updateCartAll', [PageController::class, 'updateCartAll'])->name('updateCartAll');
 
 Route::get('checkOut', [PageController::class, 'checkOut'])->name('checkOut')->middleware('auth');
 Route::get('checkOutSuccess', [PageController::class, 'checkOutSuccess'])->name('checkOutSuccess')->middleware('auth');

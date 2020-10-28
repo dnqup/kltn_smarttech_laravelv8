@@ -29,10 +29,12 @@
                         <tbody>
                             @foreach($carts as $cart)
                             <form method="GET" action="{{ route('updateCart', $cart->rowId) }}">
+                            <input type="hidden" name="rowId" value="{{ $cart->rowId}}" />
+                            <input type="hidden" name="id" value="{{ $cart->id}}" />
                             <tr class="product-item">
                                 <td scope="row" class="product-item__col_1">
                                     <div class="product-item__col_left">
-                                        <a href="#.">
+                                        <a href="{{ route('get.productdetail', $cart->id) }}">
                                             <img src="{{asset('storage/product_images/'.$cart->options->image)}}"
                                                 class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
                                                 alt="">
@@ -70,7 +72,7 @@
                             <tr>
 
                                 <th scope="row" colspan="5" class="grand-total">
-                                    
+                                    <!-- <button id="update-all" type="button" class="btn btn-danger">Cập nhật all</button> -->
                                     <a href="{{ route('destroyCart') }}"><button type="button" class="btn btn-danger">Xóa all</button></a>
                                     <h5>Tổng cộng: {{ number_format($total)}} VNĐ</h5>
                                 </th>
@@ -99,3 +101,30 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $("#update-all").click(function() {
+            var rowId = $("[name=rowId").val();
+            var id = $("[name=id").val();
+            var qty = $("[name=quantity]").val();
+            // $.get( "updateCartAll" , {rowId: rowId, id: id, qty: qty}, function(data) {
+            //     alert(123);
+            // });
+            $.ajax({
+            type: "GET",
+            url: "{{ route('updateCartAll')}}",
+            data: {
+                rowId: rowId, 
+                id: id, 
+                qty: qty
+            },
+            success:function(data){
+                alert(data);
+            }
+        });
+        });
+    });
+</script>
+@endpush

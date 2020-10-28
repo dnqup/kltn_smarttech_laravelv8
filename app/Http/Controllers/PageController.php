@@ -197,6 +197,19 @@ class PageController extends Controller
         Cart::update($rowId, $quantity);
         return back();
     }
+
+    // public function updateCartAll(Request $request)
+    // {   
+    //     $rowId = $_GET["rowId"];
+    //     // $productItem = Cart::get($rowId);
+    //     $productId = $_GET["id"];
+    //     $quantity = $_GET["qty"];
+
+        
+        
+    //     Cart::update($rowId, $quantity);
+    //     return Response(Cart::update($rowId, $quantity));
+    // }
     
     public function checkOut()
     {   

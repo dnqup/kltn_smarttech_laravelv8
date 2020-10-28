@@ -3,6 +3,18 @@
 <section class="product-details">
         <div class="container">
             <div class="row product-details_row">
+            @if (session('success'))
+                <div id="thongbao" aria-live="polite" aria-atomic="true">
+                    <div class="toast toast-success" data-delay="3000">
+                        <div class="toast-header bg-success text-white">
+                            <strong class="mr-auto">{{ session('success') }}</strong>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="col-md-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -45,7 +57,7 @@
                     </ul>
                     <div class="add-cart">
 
-                        <a href="#."><i class="fas fa-cart-plus"></i><span>Mua ngay</span> </a>
+                        <a href="{{ route('addCart', $product->id) }}"><i class="fas fa-cart-plus"></i><span>Mua ngay</span> </a>
                     </div>
 
                 </div>

@@ -4,7 +4,18 @@
 <section class="list-product">
     <div class="container">
         <div class="row list-product__row">
-            
+        @if (session('success'))
+                <div id="thongbao" aria-live="polite" aria-atomic="true">
+                    <div class="toast toast-success" data-delay="3000">
+                        <div class="toast-header bg-success text-white">
+                            <strong class="mr-auto">{{ session('success') }}</strong>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endif
             <div class="list-category-filter">
                 
                 <div class="hot_title bg-info">
@@ -25,7 +36,7 @@
                             <p class="listed-price">{{ number_format($product->price)}} VNĐ</p>
                             <p class="promotional-price">{{ number_format($product->promotion_price)}} VNĐ</p>
                         </div>
-                        <a href="#" class="icon-addcart"><i class="fas fa-cart-plus"></i></a>
+                        <a href="{{ route('addCart', $product->id) }}" class="icon-addcart"><i class="fas fa-cart-plus"></i></a>
                     </div>
                 @endforeach
                 </div>
